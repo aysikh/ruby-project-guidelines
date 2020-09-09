@@ -11,32 +11,6 @@ milo = Bartender.find_or_create_by(name: "Milo", years_of_experience: 2)
 steve = Bartender.find_or_create_by(name: "Steve", years_of_experience: 1)
 
 
-################# CUSTOMERS ###################
-sue = Customer.find_or_create_by(name: "Sue", favorite_drink: reisling, favorite_bartender: steve, is_over_21: true, is_a_regular: true)
-
-matteo = Customer.find_or_create_by(name: "Matteo", favorite_drink: moscowmule, favorite_bartender: milo, is_over_21: true, is_a_regular: false)
-
-shannon = Customer.find_or_create_by(name: "Shannon", favorite_drink: orangecrush, favorite_bartender: steve, is_over_21: true, is_a_regular: true)
-
-paul = Customer.find_or_create_by(name: "Paul", favorite_drink: mojito, favorite_bartender: amy, is_over_21: true, is_a_regular: true)
-
-mark = Customer.find_or_create_by(name: "Mark", favorite_drink: moscowmule, favorite_bartender: milo, is_over_21: true, is_a_regular: true)
-
-jon = Customer.find_or_create_by(name: "Jon", favorite_drink: whiterussian, favorite_bartender: milo, is_over_21: true, is_a_regular: true)
-
-anney = Customer.find_or_create_by(name: "Anney", favorite_drink: whiskeysour, favorite_bartender: amy, is_over_21: true, is_a_regular: true)
-
-conrad = Customer.find_or_create_by(name: "Anney", favorite_drink: cucumbergin, favorite_bartender: steve, is_over_21: true, is_a_regular: false)
-
-michelle = Customer.find_or_create_by(name: "Michelle", favorite_drink: oldfashion, favorite_bartender: amy, is_over_21: true, is_a_regular: false)
-
-stephanie = Customer.find_or_create_by(name: "Stephanie", favorite_drink: water, favorite_bartender: steve, is_over_21: false, is_a_regular: true)
-
-kevin = Customer.find_or_create_by(name: "Kevin", favorite_drink: soda, favorite_bartender: milo, is_over_21: false, is_a_regular: false) 
-
-zachary = Customer.find_or_create_by(name: "Zachary", favorite_drink: pinotgrigrio, favorite_bartender: amy, is_over_21: true, is_a_regular: true)
-
-
 ################### WINE ####################
 pinotnoir = Drink.find_or_create_by(name: "Pinot Noir", price: 5, fluid_ounce: 8)
 
@@ -65,15 +39,15 @@ flyingdog = Drink.find_or_create_by(name: "Flying Dog IPA", price: 7, fluid_ounc
 modelo = Drink.find_or_create_by(name: "Modelo", price: 6, fluid_ounce: 16)
 
 ################## COCKTAILS ####################
-moscowmule = Drink.find_or_create_by(name: "Moscow Mule", price: 10, liquor: "Vodka" ingredients: "Ginger beer and lime juice", fluid_ounce: 12)
+moscowmule = Drink.find_or_create_by(name: "Moscow Mule", price: 10, liquor: "Vodka", ingredients: "Ginger beer and lime juice", fluid_ounce: 12)
 
 orangecrush = Drink.find_or_create_by(name: "Orange Crush", price: 10, liquor: "Vodka", ingredients: "Orange juice, triple sec, and simple syrup", fluid_ounce: 12)
 
-mojito = Drink.find_or_create_by(name: "Mojito", price: 8, liquor: "Rum", ingredients: "Simple syrup, mint, and sprite", inventory: 150, fluid_ounce: 12)
+mojito = Drink.find_or_create_by(name: "Mojito", price: 8, liquor: "Rum", ingredients: "Simple syrup, mint, and sprite", fluid_ounce: 12)
 
 oldfashion = Drink.find_or_create_by(name: "Old Fashion", price: 12, liquor: "Whiskey", ingredients: "Angostura bitters, orange bitters, and demerara", fluid_ounce: 10)
 
-whiterussian = Drink.find_or_create_by(name "White Russian", price: 12, liquor: "Vodka", ingredients: "Heavy cream and coffee liqueur", fluid_ounce: 10)
+whiterussian = Drink.find_or_create_by(name: "White Russian", price: 12, liquor: "Vodka", ingredients: "Heavy cream and coffee liqueur", fluid_ounce: 10)
 
 whiskeysour = Drink.find_or_create_by(name: "Whiskey Sour", price: 12, liquor: "Whiskey", ingredients: "Egg white, lemon juice, demerara", fluid_ounce: 10)
 
@@ -93,4 +67,30 @@ virgincrush = Drink.find_or_create_by(name: "Virgin Orange Crush", price: 6, ing
 water = Drink.find_or_create_by(name: "The Finest Tap Water", price: 0)
 
 soda = Drink.find_or_create_by(name: "Soda", price: 2)
+
+
+################# CUSTOMERS ###################
+sue = Customer.find_or_create_by(name: "Sue", favorite_drink_id: reisling.id, favorite_bartender_id: steve.id, is_over_21: true, is_a_regular: true)
+
+matteo = Customer.find_or_create_by(name: "Matteo", favorite_drink_id: moscowmule.id, favorite_bartender_id: milo.id, is_over_21: true, is_a_regular: false)
+
+shannon = Customer.find_or_create_by(name: "Shannon", favorite_drink_id: orangecrush.id, favorite_bartender_id: steve.id, is_over_21: true, is_a_regular: true)
+
+paul = Customer.find_or_create_by(name: "Paul", favorite_drink_id: mojito.id, favorite_bartender_id: amy.id, is_over_21: true, is_a_regular: true)
+
+mark = Customer.find_or_create_by(name: "Mark", favorite_drink_id: moscowmule.id, favorite_bartender_id: milo.id, is_over_21: true, is_a_regular: true)
+
+jon = Customer.find_or_create_by(name: "Jon", favorite_drink_id: whiterussian.id, favorite_bartender_id: milo.id, is_over_21: true, is_a_regular: true)
+
+anney = Customer.find_or_create_by(name: "Anney", favorite_drink_id: whiskeysour.id, favorite_bartender_id: amy.id, is_over_21: true, is_a_regular: true)
+
+conrad = Customer.find_or_create_by(name: "Anney", favorite_drink_id: cucumbergin.id, favorite_bartender_id: steve.id, is_over_21: true, is_a_regular: false)
+
+michelle = Customer.find_or_create_by(name: "Michelle", favorite_drink_id: oldfashion.id, favorite_bartender_id: amy.id, is_over_21: true, is_a_regular: false)
+
+stephanie = Customer.find_or_create_by(name: "Stephanie", favorite_drink_id: water.id, favorite_bartender_id: steve.id, is_over_21: false, is_a_regular: true)
+
+kevin = Customer.find_or_create_by(name: "Kevin", favorite_drink_id: soda.id, favorite_bartender_id: milo.id, is_over_21: false, is_a_regular: false) 
+
+zachary = Customer.find_or_create_by(name: "Zachary", favorite_drink_id: pinotgrigrio.id, favorite_bartender_id: amy.id, is_over_21: true, is_a_regular: true)
 

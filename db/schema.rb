@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 4) do
 
   create_table "customers", force: :cascade do |t|
     t.string "name"
-    t.string "favorite_drink"
-    t.string "favorite_bartender"
+    t.integer "favorite_drink_id"
+    t.integer "favorite_bartender_id"
     t.boolean "is_over_21"
     t.boolean "is_a_regular"
   end
