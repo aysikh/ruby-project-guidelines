@@ -12,5 +12,4 @@ task :hello do
   puts "Hello!!"
 end
 
-task :new_bartender do
   
