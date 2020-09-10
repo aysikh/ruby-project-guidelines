@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 4) do
 
   create_table "bar", force: :cascade do |t|
     t.integer "customer_id"
-    t.integer "drink_id"
+    t.integer "drinks_id"
   end
 
   create_table "bartenders", force: :cascade do |t|
@@ -24,10 +24,8 @@ ActiveRecord::Schema.define(version: 4) do
 
   create_table "customers", force: :cascade do |t|
     t.string "name"
-    t.integer "favorite_drink_id"
-    t.integer "favorite_bartender_id"
+    t.string "drinks"
     t.boolean "is_over_21"
-    t.boolean "is_a_regular"
   end
 
   create_table "drinks", force: :cascade do |t|
@@ -35,7 +33,6 @@ ActiveRecord::Schema.define(version: 4) do
     t.float "price"
     t.string "liquor"
     t.string "ingredients"
-    t.float "fluid_ounce"
   end
 
 end

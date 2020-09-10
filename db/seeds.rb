@@ -26,7 +26,7 @@ whiteclaw = Drink.find_or_create_by(name: "White Claw", price: 6)
 truly = Drink.find_or_create_by(name: "Truly", price: 6)
 
 ################## BEER ##########################
-bluemoon = Drink.find_or_create_by(name: "Blue Moon", price: 5))
+bluemoon = Drink.find_or_create_by(name: "Blue Moon", price: 5)
 
 solace = Drink.find_or_create_by(name: "Solace Lucy Juicy", price: 7)
 
@@ -93,4 +93,3 @@ mark = Customer.find_or_create_by(name: "Mark", drinks: moscowmule, is_over_21: 
 # kevin = Customer.find_or_create_by(name: "Kevin", drinks: soda is_over_21: false
 
 # zachary = Customer.find_or_create_by(name: "Zachary", drinks: pinotgrigriois_over_21: true
-
