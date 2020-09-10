@@ -92,5 +92,9 @@ mark = Customer.find_or_create_by(name: "Mark", drink: moscowmule.name, is_over_
 
 # kevin = Customer.find_or_create_by(name: "Kevin", drink: soda is_over_21: false
 
+<<<<<<< HEAD
+# zachary = Customer.find_or_create_by(name: "Zachary", drinks: pinotgrigriois_over_21: true
+=======
 # zachary = Customer.find_or_create_by(name: "Zachary", drink: pinotgrigriois_over_21: true
 
+>>>>>>> 8383c64d72a810d5b887f739b2601f73f9b4586c
