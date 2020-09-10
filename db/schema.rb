@@ -24,7 +24,11 @@ ActiveRecord::Schema.define(version: 4) do
 
   create_table "customers", force: :cascade do |t|
     t.string "name"
+<<<<<<< HEAD
     t.string "drinks"
+=======
+    t.string "drink"
+>>>>>>> 8383c64d72a810d5b887f739b2601f73f9b4586c
     t.boolean "is_over_21"
   end
 

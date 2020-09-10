@@ -7,7 +7,6 @@ class CreateBar < ActiveRecord::Migration[4.2]
     end
   end
 
-
 end
 
 # bar 1 = drink_id, customer_id 
