@@ -26,13 +26,13 @@ whiteclaw = Drink.find_or_create_by(name: "White Claw", price: 6)
 truly = Drink.find_or_create_by(name: "Truly", price: 6)
 
 ################## BEER ##########################
-bluemoon = Drink.find_or_create_by(name: "Blue Moon", price: 5))
+bluemoon = Drink.find_or_create_by(name: "Blue Moon", price: 5)
 
 solace = Drink.find_or_create_by(name: "Solace Lucy Juicy", price: 7)
 
 kirin = Drink.find_or_create_by(name: "Kirin Ichiban", price: 5)
 
-miller = Drink.find_or_create_by(name: "Miller Lite", price: 5))
+miller = Drink.find_or_create_by(name: "Miller Lite", price: 5)
 
 flyingdog = Drink.find_or_create_by(name: "Flying Dog IPA", price: 7)
 
@@ -43,7 +43,7 @@ moscowmule = Drink.find_or_create_by(name: "Moscow Mule", price: 10, liquor: "Vo
 
 orangecrush = Drink.find_or_create_by(name: "Orange Crush", price: 10, liquor: "Vodka", ingredients: "Orange juice, triple sec, and simple syrup")
 
-mojito = Drink.find_or_create_by(name: "Mojito", price: 8, liquor: "Rum", ingredients: "Simple syrup, mint, and sprite"))
+mojito = Drink.find_or_create_by(name: "Mojito", price: 8, liquor: "Rum", ingredients: "Simple syrup, mint, and sprite")
 
 oldfashion = Drink.find_or_create_by(name: "Old Fashion", price: 12, liquor: "Whiskey", ingredients: "Angostura bitters, orange bitters, and demerara")
 
@@ -70,27 +70,27 @@ soda = Drink.find_or_create_by(name: "Soda", price: 2)
 
 
 ################# CUSTOMERS ###################
-sue = Customer.find_or_create_by(name: "Sue", drinks: reisling, is_over_21: true
+sue = Customer.find_or_create_by(name: "Sue", drink: reisling.name, is_over_21: true)
 
-matteo = Customer.find_or_create_by(name: "Matteo", drinks: moscowmule, is_over_21: true
+matteo = Customer.find_or_create_by(name: "Matteo", drink: moscowmule.name, is_over_21: true)
 
-shannon = Customer.find_or_create_by(name: "Shannon", drinks: orangecrush, is_over_21: true
+shannon = Customer.find_or_create_by(name: "Shannon", drink: orangecrush.name, is_over_21: true)
 
-paul = Customer.find_or_create_by(name: "Paul", drinks: mojito, is_over_21: true
+paul = Customer.find_or_create_by(name: "Paul", drink: mojito.name, is_over_21: true)
 
-mark = Customer.find_or_create_by(name: "Mark", drinks: moscowmule, is_over_21: true
+mark = Customer.find_or_create_by(name: "Mark", drink: moscowmule.name, is_over_21: true)
 
-# jon = Customer.find_or_create_by(name: "Jon", drinks: whiterussian is_over_21: true
+# jon = Customer.find_or_create_by(name: "Jon", drink: whiterussian is_over_21: true
 
-# anney = Customer.find_or_create_by(name: "Anney", drinks: whiskeysour, is_over_21: true
+# anney = Customer.find_or_create_by(name: "Anney", drink: whiskeysour, is_over_21: true
 
-# conrad = Customer.find_or_create_by(name: "Anney", drinks: cucumbergin, is_over_21: true
+# conrad = Customer.find_or_create_by(name: "Anney", drink: cucumbergin, is_over_21: true
 
-# michelle = Customer.find_or_create_by(name: "Michelle", drinks: oldfashionis_over_21: true)
+# michelle = Customer.find_or_create_by(name: "Michelle", drink: oldfashionis_over_21: true)
 
-# stephanie = Customer.find_or_create_by(name: "Stephanie", drinks: water, is_over_21: false
+# stephanie = Customer.find_or_create_by(name: "Stephanie", drink: water, is_over_21: false
 
-# kevin = Customer.find_or_create_by(name: "Kevin", drinks: soda is_over_21: false
+# kevin = Customer.find_or_create_by(name: "Kevin", drink: soda is_over_21: false
 
-# zachary = Customer.find_or_create_by(name: "Zachary", drinks: pinotgrigriois_over_21: true
+# zachary = Customer.find_or_create_by(name: "Zachary", drink: pinotgrigriois_over_21: true
 

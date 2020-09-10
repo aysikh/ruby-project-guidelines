@@ -6,12 +6,11 @@ username = gets.chomp
 print "Years of experience? "
 experience = gets.chomp
 new_bartender = Bartender.new(name: username, years_of_experience: experience)
-# new_bartender.save
+new_bartender.save
 
 # if user_input.downcase == "back"
 #   main_prompt
 # end
-
 
 puts "Hello #{new_bartender.name}! Are you ready to start bartending?"
 puts ""
@@ -40,12 +39,12 @@ puts "or 'EXIT' to exit the application"
     customer_legal = gets.chomp
     puts "What is #{customer_name}'s drinking?"
     customer_drink = gets.chomp
-    if customer_legal == false
-      puts "Sorry! #{customer_name} is too young to drink."
-      customer_drink = "water" || "soda"
-    else 
+    # if customer_legal == false
+    #   puts "Sorry! #{customer_name} is too young to drink."
+    #   customer_drink = "water" || "soda"
+    # else 
     #how to raise error if customer is ordering alcoholic bev.
-    new_customer = Customer.new(name: customer_name, favorite_drink: customer_drink, is_over_21: customer_legal)
+    new_customer = Customer.new(name: customer_name, drink: customer_drink, is_over_21: customer_legal)
     new_customer.save
     puts "Nice! #{customer_name} has been added."
     puts "#{customer_name.upcase} IS READY TO GIT LIT!!!"
@@ -61,7 +60,7 @@ puts "or 'EXIT' to exit the application"
     puts "Does #{drink_name} comtain any extra ingredients? If so, what kind? If not, leave blank." 
     drink_ingredients = gets.chomp
     new_drink = Drink.new(name: drink_name, price: drink_price, liquor: drink_liquor, ingredients: drink_ingredients)
-    # new_drink.save
+    new_drink.save
     puts "#{drink_name} has been added to the menu!"
   end
 
@@ -92,16 +91,13 @@ puts "or 'EXIT' to exit the application"
       updated.save
       puts "#{current_name.upcase} IS LEGAL! WOOHOO!"
     elsif user_choice.downcase == "drink"
-      puts "What is #{current_name}'s new favorite drink?"
+      puts "What is #{current_name}'s ordering?"
       update_customer_drink = gets.chomp
-      updated.update favorite_drink: "#{update_customer_drink}"
+      updated.update drink: "#{update_customer_drink}"
       updated.save
-      puts "#{current_name} has updated their favorite drink!"
+      puts "#{current_name} has added #{update_customer_drink}to their tab!"
     end
-
   end
-
-  # end
 
   if user_input.downcase == "delete"
     puts "Would you like to delete a customer or a drink?"
@@ -120,12 +116,4 @@ puts "or 'EXIT' to exit the application"
       puts "Drink deleted"
     end
   end
-
-
-end
-
-def can_destroy_a_single_item
-  Movie.create(title: "That One Where the Guy Kicks Another Guy Once")
-  movie= Movie.find_by(title: "That One Where the Guy Kicks Another Guy Once")
-  movie.delete
 end
