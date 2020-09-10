@@ -1,4 +1,4 @@
-# require_relative '../config/environment'
+require_relative '../config/environment'
 
 # ABLE TO CREATE A NEW BARTENDER
 print "Welcome to the app. Please enter your name: " 
@@ -6,16 +6,23 @@ username = gets.chomp
 print "Years of experience? "
 experience = gets.chomp
 new_bartender = Bartender.new(name: username, years_of_experience: experience)
-new_bartender.save
+# new_bartender.save
 
-puts "Hello #{new_bartender.name}! Are you ready to start bartending?" 
-puts "You can orginize your customers and their drink orders with this aplication."
-puts "Type 'menu' to see a list of available drinks at the bar"
-puts "Type 'create new customer' to create a new customer profile"
-puts "Type 'create new drink' to create a new drink at the bar"
-puts "Type 'update customer' to update a customer's profile"
-puts "Type 'delete customer' to delete a customer's profile"
-puts "or type 'exit' to exit the application"
+# if user_input.downcase == "back"
+#   main_prompt
+# end
+
+
+puts "Hello #{new_bartender.name}! Are you ready to start bartending?"
+puts ""
+puts "'MENU' to see a list of available drinks at the bar"
+puts "'CUSTOMERS' to view current customers at the bar"
+puts "'CREATE NEW CUSTOMER' to create a new customer profile"
+puts "'CREATE NEW DRINK' to create a new drink at the bar"
+puts "'UPDATE CUSTOMER' to update a customer's profile"
+puts "'DELETE CUSTOMER' to delete a customer's profile"
+puts "or 'EXIT' to exit the application"
+
 
 
   usage = true
@@ -35,7 +42,9 @@ puts "or type 'exit' to exit the application"
     customer_drink = gets.chomp
     #how to raise error if customer is ordering alcoholic bev.
     new_customer = Customer.new(name: customer_name, favorite_drink: customer_drink, is_over_21: customer_legal)
-    new_customer.save
+    # new_customer.save
+    puts "Nice! #{customer_name} has been added."
+    puts "#{customer_name.upcase} IS READY TO GIT LIT!!!"
   end
 
   if user_input.downcase == "create new drink"
@@ -43,15 +52,43 @@ puts "or type 'exit' to exit the application"
     drink_name = gets.chomp
     puts "What will be the price for #{drink_name}?"
     drink_price = gets.chomp
-    puts "Does #{drink_name} "
-  
-  if user_input.downcase == "menu" #print out all the drink names
-    print Drink.all.pluck(:name)
+    puts "Does #{drink_name} contain liquor? If so, what kind? If not, leave blank."
+    drink_liquor = gets.chomp
+    puts "Does #{drink_name} comtain any extra ingredients? If so, what kind? If not, leave blank." 
+    drink_ingredients = gets.chomp
+    new_drink = Drink.new(name: drink_name, price: drink_price, liquor: drink_liquor, ingredients: drink_ingredients)
+    # new_drink.save
+    puts "#{drink_name} has been added to the menu!"
   end
 
-  if user_input.downcase == "help"
-    print "help"
+  if user_input.downcase == "customers" 
+    puts Customer.all.pluck(:name)
   end
+
+  if user_input.downcase == "menu"
+    puts Drink.all.pluck(:name)
+  end
+
+  if user_input.downcase == "update customer"
+    puts "What is the name of the customer you would like to edit?"
+    current_name = gets.chomp
+    updated = Customer.find_by name: "#{current_name}"
+    puts "What is the new name?"
+    update_name = gets.chomp
+    updated.update name: "#{update_name}"
+    puts "Name updated"
+    updated.save
+    
+  end
+
+  #   puts "True or False: is #{update_name} at a legal age to drink?"
+  #   update_legal = gets.chomp
+  #   Customer.update (name: "#{update_name}" , is_over_21: "#{update_legal}" 
+  #   puts "Is #{update_name} "
+
+  # end
+
+  # if user_input.downcase == "delete"
+
 
 end
-
