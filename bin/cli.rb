@@ -103,7 +103,29 @@ puts "or 'EXIT' to exit the application"
 
   # end
 
-  # if user_input.downcase == "delete"
+  if user_input.downcase == "delete"
+    puts "Would you like to delete a customer or a drink?"
+    delete_input = gets.chomp
+    if delete_input.downcase == "customer"
+      puts "What is the name of the customer you would like to delete?"
+      delete_customer_name = gets.chomp
+      delete_customer_row = Customer.find_by(name: "#{delete_customer_name}")
+      delete_customer_row.delete
+      puts "Customer deleted"
+    elsif delete_input.downcase == "drink"
+      puts "What is the name of the drink you would like to delete?"
+      delete_drink_name = gets.chomp
+      delete_drink_row = Drink.find_by(name: "#{delete_drink_name}")
+      delete_drink_row.delete
+      puts "Drink deleted"
+    end
+  end
 
 
+end
+
+def can_destroy_a_single_item
+  Movie.create(title: "That One Where the Guy Kicks Another Guy Once")
+  movie= Movie.find_by(title: "That One Where the Guy Kicks Another Guy Once")
+  movie.delete
 end
