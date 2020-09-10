@@ -1,7 +1,7 @@
-class CreateBar < ActiveRecord::Migration[4.2]
+class CreateBars < ActiveRecord::Migration[4.2]
 
   def change
-    create_table :bar do |t|
+    create_table :bars do |t|
       t.integer :customer_id
       t.integer :drinks_id
     end

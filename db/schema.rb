@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 4) do
 
-  create_table "bar", force: :cascade do |t|
+  create_table "bars", force: :cascade do |t|
     t.integer "customer_id"
     t.integer "drinks_id"
   end
@@ -24,11 +24,7 @@ ActiveRecord::Schema.define(version: 4) do
 
   create_table "customers", force: :cascade do |t|
     t.string "name"
-<<<<<<< HEAD
-    t.string "drinks"
-=======
     t.string "drink"
->>>>>>> 8383c64d72a810d5b887f739b2601f73f9b4586c
     t.boolean "is_over_21"
   end
 
