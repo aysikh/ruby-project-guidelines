@@ -18,9 +18,11 @@ puts "'MENU' to see a list of available drinks at the bar"
 puts "'CUSTOMERS' to view current customers at the bar"
 puts "'CREATE NEW CUSTOMER' to create a new customer profile"
 puts "'CREATE NEW DRINK' to create a new drink at the bar"
+puts "'ADD DRINK' to add drink to customer's tab"
 puts "'UPDATE CUSTOMER' to update a customer's profile"
 puts "'DELETE CUSTOMER' to delete a customer's profile"
-puts "or 'EXIT' to exit the application"
+puts "'EXIT' to exit the application"
+puts "'HELP' to see all of the commands again"
 
 
 
@@ -31,6 +33,7 @@ puts "or 'EXIT' to exit the application"
     puts "Goodbye!"
     break
   end
+
 
   if user_input.downcase == "create new customer"
     puts "What is the customer's name? "
@@ -64,6 +67,18 @@ puts "or 'EXIT' to exit the application"
     puts "#{drink_name} has been added to the menu!"
   end
 
+  if user_input.downcase == "add drink"
+    puts "What is the name of the tab you would like to update?"
+    add_tab_name = gets.chomp
+    find_person = Customer.find_by name: "#{add_tab_name}"
+    puts "What is the name of the drink you would like to add to #{add_tab_name}'s tab?"
+    add_tab_drink = gets.chomp
+    find_drink = Drink.find_by name: "#{add_tab_drink}"
+    puts "You added #{add_tab_drink} to #{add_tab_name}'s tab!"
+    new_bar = Bar.new customer_id: "#{find_person.id}", drinks_id: "#{find_drink.id}"
+    new_bar.save
+  end
+
   if user_input.downcase == "customers" 
     puts Customer.all.pluck(:name)
   end
@@ -72,7 +87,7 @@ puts "or 'EXIT' to exit the application"
     puts Drink.all.pluck(:name)
   end
 
-  if user_input.downcase == "update customer"
+  if user_input.downcase == "update customer" #add drink
     puts "What is the name of the customer you would like to edit?"
     current_name = gets.chomp
     updated = Customer.find_by name: "#{current_name}"
