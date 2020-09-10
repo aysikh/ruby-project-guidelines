@@ -38,11 +38,15 @@ puts "or 'EXIT' to exit the application"
     customer_name = gets.chomp
     puts "True or False: Is #{customer_name} over 21?"
     customer_legal = gets.chomp
-    puts "What is #{customer_name}'s favorite drink?"
+    puts "What is #{customer_name}'s drinking?"
     customer_drink = gets.chomp
+    if customer_legal == false
+      puts "Sorry! #{customer_name} is too young to drink."
+      customer_drink = "water" || "soda"
+    else 
     #how to raise error if customer is ordering alcoholic bev.
     new_customer = Customer.new(name: customer_name, favorite_drink: customer_drink, is_over_21: customer_legal)
-    # new_customer.save
+    new_customer.save
     puts "Nice! #{customer_name} has been added."
     puts "#{customer_name.upcase} IS READY TO GIT LIT!!!"
   end
@@ -73,19 +77,29 @@ puts "or 'EXIT' to exit the application"
     puts "What is the name of the customer you would like to edit?"
     current_name = gets.chomp
     updated = Customer.find_by name: "#{current_name}"
-    puts "What is the new name?"
-    update_name = gets.chomp
-    updated.update name: "#{update_name}"
-    puts "Name updated"
-    updated.save
-    
+    puts "What would you like to update about #{current_name}?Their name, drink, or age?"
+    user_choice = gets.chomp
+    if user_choice.downcase == "name"
+      puts "What is the new name?"
+      update_name = gets.chomp
+      updated.update name: "#{update_name}"
+      puts "#{update_name} has been updated!"
+      updated.save
+    elsif user_choice.downcase == "age"
+      puts "True or False: is #{current_name} at a legal age to drink?"
+      update_legal = gets.chomp
+      updated.update is_over_21: "#{update_legal}"
+      updated.save
+      puts "#{current_name.upcase} IS LEGAL! WOOHOO!"
+    elsif user_choice.downcase == "drink"
+      puts "What is #{current_name}'s new favorite drink?"
+      update_customer_drink = gets.chomp
+      updated.update favorite_drink: "#{update_customer_drink}"
+      updated.save
+      puts "#{current_name} has updated their favorite drink!"
+    end
 
   end
-
-  #   puts "True or False: is #{update_name} at a legal age to drink?"
-  #   update_legal = gets.chomp
-  #   Customer.update (name: "#{update_name}" , is_over_21: "#{update_legal}" 
-  #   puts "Is #{update_name} "
 
   # end
 

@@ -6,7 +6,6 @@ class CreateDrinks < ActiveRecord::Migration[4.2]
       t.float :price
       t.string :liquor
       t.string :ingredients
-      t.float :fluid_ounce
     end
   end
 
