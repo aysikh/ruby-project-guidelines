@@ -1,7 +1,30 @@
 require_relative '../config/environment'
-
+require 'colorize'
 
 def welcome
+
+  print "
+  (
+    *                           )   *
+                  )     *      (
+        )        (                   (
+       (          )     (             )
+        )    *           )        )  (
+       (                (        (      *
+        )          H     )        )
+                  [ ]            (
+           (  *   |-|       *     )    (
+     *      )     |_|        .          )
+           (      | |    .  
+     )           /   \\     .    ' .        *
+    (           |_____|  '  .    .  
+     )          | ___ |  \\~~~/  ' .   (
+            *   | \\ / |   \\_/  \\~~~/   )
+                | _Y_ |    |    \\_/   (
+    *           |-----|  __|__   |      *
+                `-----`        __|__ 
+                \n \n".colorize(:color => :blue, :background => :light_white).bold
+  
   print "Welcome to the app. Please enter your name: " 
   username = gets.chomp
   print "Years of experience? "
@@ -14,13 +37,15 @@ end
 def help(new_bartender)
   puts "Hello #{new_bartender.name}! Are you ready to start bartending?"
   puts ""
-  puts "'MENU' to see a list of available drinks at the bar"
-  puts "'CUSTOMERS' to view current customers at the bar"
-  puts "'CREATE NEW CUSTOMER' to create a new customer profile"
-  puts "'CREATE NEW DRINK' to create a new drink at the bar"
-  puts "'ADD DRINK' to add drink to customer's tab"
-  puts "'UPDATE CUSTOMER' to update a customer's profile"
-  puts "'DELETE CUSTOMER' to delete a customer's profile"
+  puts "Enter one of the following: "
+  puts "1. '1' to see a list of available drinks at the bar"
+  puts "2. '2' to view current customers at the bar"
+  puts "3. '3' to create a new customer profile"
+  puts "4. '4' to create a new drink for the menu"
+  puts "5. '5' to add a drink to a customer's tab"
+  puts "6. '6' to update a customer's profile"
+  puts "7. '7' to delete a customer's profile"
+  puts ""
   puts "'EXIT' to exit the application"
   puts "'HELP' to see all of the commands again"
 end
@@ -34,7 +59,7 @@ def create_new_customer
   customer_drink = nil
   # binding.pry
   if customer_age.to_i < 21
-    puts "#{customer_name} is too young to drink. Are they drinking water or soda?"
+    puts "#{customer_name} is too young for alcohol. Are they drinking water or soda?"
     puts "Enter '1' for water or '2' for soda"
     customer_choice = gets.chomp
     if customer_choice == "1"
@@ -42,7 +67,7 @@ def create_new_customer
     elsif  customer_choice == "2"
       customer_drink = "soda"
     else
-      puts "Please choose (1)water or (2)soda."
+      puts "Please choose (1) water or (2) soda."
     end
   else
     puts "What is #{customer_name}'s drinking?"
@@ -51,25 +76,34 @@ def create_new_customer
   new_customer = Customer.new(name: customer_name, drink: customer_drink, age: customer_age)
   new_customer.save
   puts "Nice! #{customer_name} has been added. "
-  puts "#{customer_name.upcase} IS READY TO GIT LIT!!!"
-
+  puts "#{customer_name.upcase} IS READY TO "
+  print "
+   __      ___            ___
+  / _   |   |     |    |   | 
+  \\__)  |   |     |__  |   |  
+  ".colorize(:color => :white, :background => :light_white)       
 end
 
 def create_new_drink
   puts "What is the name of your drink?"
   drink_name = gets.chomp
-    if drink_name == Drink.find_by(name: drink_name)
-      puts "Whoops! #{drink_name} is already on the menu!"
-    end
-  puts "What will be the price for #{drink_name}?"
-  drink_price = gets.chomp
-  puts "Does #{drink_name} contain liquor? If so, what kind? If not, leave blank."
-  drink_liquor = gets.chomp
-  puts "Does #{drink_name} comtain any extra ingredients? If so, what kind? If not, leave blank." 
-  drink_ingredients = gets.chomp
-  new_drink = Drink.new(name: drink_name, price: drink_price, liquor: drink_liquor, ingredients: drink_ingredients)
-  new_drink.save
-  puts "#{drink_name} has been added to the menu!"
+  drink_array = all_drinks
+  # binding.pry
+  if drink_array.include?(drink_name)
+    puts "Whoops! #{drink_name} is already on the menu!"
+    create_new_drink
+  else
+    puts "What will be the price for #{drink_name}?"
+    drink_price = gets.chomp
+    puts "Does #{drink_name} contain liquor? If so, what kind? If not, leave blank."
+    drink_liquor = gets.chomp
+    puts "Does #{drink_name} comtain any extra ingredients? If so, what kind? If not, leave blank." 
+    drink_ingredients = gets.chomp
+    new_drink = Drink.new(name: drink_name, price: drink_price, liquor: drink_liquor, ingredients: drink_ingredients)
+    new_drink.save
+    puts "#{drink_name} has been added to the menu!"
+    puts "Enter 'help' to return to the main menu." 
+  end
 end
 
 def add_drink
@@ -82,14 +116,17 @@ def add_drink
   puts "You added #{add_tab_drink} to #{add_tab_name}'s tab!"
   new_bar = Bar.new customer_id: find_person.id, drinks_id: find_drink.id 
   new_bar.save
+  puts "Enter 'help' to return to the main menu." 
 end
 
 def all_customers
-  puts Customer.all.pluck(:name)
+  Customer.all.pluck(:name)
+  puts "Enter 'help' to return to the main menu." 
 end
 
 def all_drinks
-  puts Drink.all.pluck(:name)
+  Drink.all.pluck(:name)
+  puts "Enter 'help' to return to the main menu." 
 end
 
 def update_customer 
@@ -135,6 +172,7 @@ def delete
     delete_drink_row = Drink.find_by(name: delete_drink_name)
     delete_drink_row.delete
     puts "Drink deleted"
+      puts "Enter 'help' to return to the main menu." 
   end
 end
 
@@ -145,21 +183,45 @@ while usage == true do
   user_input = gets.chomp
   user_input = user_input.downcase
   if user_input == 'exit'
+    print "
+      ||                            ___                                  
+      ||                         .      .                                
+      ||      G                 /         \          oOoOo               
+      ||                        |         |       ==|||||               
+      ||        I               \\       //      _|| |||||               
+      ||                           .___.     _.-^|| |||||               
+      ||           T            __/_______.-      ==HHHHH               
+      ||                   _.-  /                   ~~~~~               
+      ||                 -     /    oOoOo                                
+      ||                 -_   /  *==|||||                                
+      ||        L           - -/_|| |||||                                
+      ||                     /  ^|| |||||                                
+      ||           I        /     ==HHHHH                               
+      ||                   /________~~~~~                                
+      ||              T     \\       \\                                  
+      ||                     \\       \\   /                             
+      ||                      /       \\ /                              
+      ||                     /                                           
+      ||                    /____                                        
+      || 
+      \n
+      \n".colorize(:yellow)
+    
     puts "Goodbye!"
     break
-  elsif user_input == "create new customer"
+  elsif user_input == "1"
+    puts all_drinks()
+  elsif user_input == "2"
+    puts all_customers()
+  elsif user_input == "3"
     create_new_customer()
-  elsif user_input == "create new drink"
+  elsif user_input == "4"
     create_new_drink()
-  elsif user_input == "customers"
-    all_customers()
-  elsif user_input == "add drink"
+  elsif user_input == "5"
     add_drink()
-  elsif user_input == "menu"
-    menu()
-  elsif user_input == "update customer"
+  elsif user_input == "6"
     update_customer()
-  elsif user_input == "delete"
+  elsif user_input == "7"
     delete()
   elsif user_input == "help"
     help(new_bartender)
