@@ -58,6 +58,9 @@ end
 def create_new_drink
   puts "What is the name of your drink?"
   drink_name = gets.chomp
+    if drink_name == Drink.find_by(name: drink_name)
+      puts "Whoops! #{drink_name} is already on the menu!"
+    end
   puts "What will be the price for #{drink_name}?"
   drink_price = gets.chomp
   puts "Does #{drink_name} contain liquor? If so, what kind? If not, leave blank."
@@ -92,25 +95,26 @@ end
 def update_customer 
   puts "What is the name of the customer you would like to edit?"
   current_name = gets.chomp
-  updated = Customer.find_by(name: "#{current_name}")
-  puts "What would you like to update about #{current_name}?Their name, drink, or age?"
+  updated = Customer.find_by(name: current_name)
+  puts "What would you like to update about #{current_name}?"
+  puts "Name, drink, or age?"
   user_choice = gets.chomp
   if user_choice.downcase == "name"
     puts "What is the new name?"
     update_name = gets.chomp
-    updated.update(name: "#{update_name}")
+    updated.update(name: update_name)
     puts "#{update_name} has been updated!"
     updated.save
   elsif user_choice.downcase == "age"
     puts "How old is #{current_name} now?"
     update_legal = gets.chomp
-    updated.update(age: "#{update_legal}")
+    updated.update(age: update_legal)
     updated.save
-    puts "#{current_name.upcase} IS LEGAL! WOOHOO!"
+    puts "HAPPY BIRTHDAY #{current_name.upcase}!!!"
   elsif user_choice.downcase == "drink"
     puts "What is #{current_name}'s ordering?"
     update_customer_drink = gets.chomp
-    updated.update(drink: "#{update_customer_drink}")
+    updated.update(drink: update_customer_drink)
     updated.save
     puts "#{current_name} has added #{update_customer_drink}to their tab!"
   end
@@ -122,13 +126,13 @@ def delete
   if delete_input.downcase == "customer"
     puts "What is the name of the customer you would like to delete?"
     delete_customer_name = gets.chomp
-    delete_customer_row = Customer.find_by(name: "#{delete_customer_name}")
+    delete_customer_row = Customer.find_by(name: delete_customer_name)
     delete_customer_row.delete
     puts "Customer deleted"
   elsif delete_input.downcase == "drink"
     puts "What is the name of the drink you would like to delete?"
     delete_drink_name = gets.chomp
-    delete_drink_row = Drink.find_by(name: "#{delete_drink_name}")
+    delete_drink_row = Drink.find_by(name: delete_drink_name)
     delete_drink_row.delete
     puts "Drink deleted"
   end
