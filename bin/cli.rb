@@ -1,6 +1,8 @@
 require_relative '../config/environment'
 require 'colorize'
-require 'audio-playback'
+# require 'audio-playback'
+String.modes
+# String.color_samples
 
 def welcome
 
@@ -26,9 +28,9 @@ def welcome
                 `-----`        __|__ 
                 \n \n".colorize(:color => :blue, :background => :light_white).bold
   
-  print "Welcome to the app. Please enter your name: " 
+  print "Welcome to the app. Please enter your name: ".colorize(:color => :blue, :background => :light_white).bold
   username = gets.chomp
-  print "Years of experience? "
+  print "Years of experience? ".colorize(:color => :blue, :background => :light_white).bold
   experience = gets.chomp
   new_bartender = Bartender.new(name: username, years_of_experience: experience)
   new_bartender.save
@@ -36,16 +38,16 @@ def welcome
 end
 
 def help(new_bartender)
-  puts "Hello #{new_bartender.name}! Are you ready to start bartending?"
-  puts ""
-  puts "Enter one of the following: "
-  puts "1. '1' to see a list of available drinks at the bar"
-  puts "2. '2' to view current customers at the bar"
-  puts "3. '3' to create a new customer profile"
-  puts "4. '4' to create a new drink for the menu"
-  puts "5. '5' to add a drink to a customer's tab"
-  puts "6. '6' to update a customer's profile"
-  puts "7. '7' to delete a customer's profile"
+  puts "Hello #{new_bartender.name}! Are you ready to start bartending?".colorize(:color => :light_blue, :background => :light_white).bold
+  puts "\n"
+  puts "Enter one of the following: ".colorize(:color => :blue, :background => :light_white).bold
+  puts "1. '1' to see a list of available drinks at the bar".colorize(:color => :light_blue, :background => :light_white).bold
+  puts "2. '2' to view current customers at the bar".colorize(:color => :blue, :background => :light_white).bold
+  puts "3. '3' to create a new customer profile".colorize(:color => :light_blue, :background => :light_white).bold
+  puts "4. '4' to create a new drink for the menu".colorize(:color => :blue, :background => :light_white).bold
+  puts "5. '5' to add a drink to a customer's tab".colorize(:color => :light_blue, :background => :light_white).bold
+  puts "6. '6' to update a customer's profile".colorize(:color => :blue, :background => :light_white).bold
+  puts "7. '7' to delete a customer's profile".colorize(:color => :light_blue, :background => :light_white).bold
   puts ""
   puts "'EXIT' to exit the application"
   puts "'HELP' to see all of the commands again"
@@ -60,7 +62,7 @@ def create_new_customer
   customer_drink = nil
   # binding.pry
   if customer_age.to_i < 21
-    puts "#{customer_name} is too young for alcohol. Are they drinking water or soda?"
+    puts "WOMP WOMP. #{customer_name} is too young for alcohol.".colorize(:color => :red, :background => :light_white).bold
     puts "Enter '1' for water or '2' for soda"
     customer_choice = gets.chomp
     if customer_choice == "1"
@@ -76,13 +78,13 @@ def create_new_customer
   end
   new_customer = Customer.new(name: customer_name, drink: customer_drink, age: customer_age)
   new_customer.save
-  puts "Nice! #{customer_name} has been added. "
-  puts "#{customer_name.upcase} IS READY TO "
+  puts "Nice! #{customer_name} has been added. ".colorize(:color => :yellow, :background => :light_white).bold
+  puts "#{customer_name.upcase} IS READY TO ".colorize(:color => :blue, :background => :light_white)
   print "
    __      ___            ___
   / _   |   |     |    |   | 
   \\__)  |   |     |__  |   |  
-  ".colorize(:color => :white, :background => :light_white)       
+  ".colorize(:color => :cyan, :background => :light_white)       
 end
 
 def create_new_drink
@@ -103,7 +105,19 @@ def create_new_drink
     new_drink = Drink.new(name: drink_name, price: drink_price, liquor: drink_liquor, ingredients: drink_ingredients)
     new_drink.save
     puts "#{drink_name} has been added to the menu!"
-    puts "Enter 'help' to return to the main menu." 
+    puts "
+     .
+      .
+     . .
+    ...
+  \\~~~~~/
+   \\   /
+    \\ /
+     V
+     |
+     |
+    --- ".colorize(:color => :blue)
+    puts "DRINK UP!".colorize(:color => :light_blue)
   end
 end
 
@@ -117,17 +131,14 @@ def add_drink
   puts "You added #{add_tab_drink} to #{add_tab_name}'s tab!"
   new_bar = Bar.new customer_id: find_person.id, drinks_id: find_drink.id 
   new_bar.save
-  puts "Enter 'help' to return to the main menu." 
 end
 
 def all_customers
   Customer.all.pluck(:name)
-  puts "Enter 'help' to return to the main menu." 
 end
 
 def all_drinks
   Drink.all.pluck(:name)
-  puts "Enter 'help' to return to the main menu." 
 end
 
 def update_customer 
@@ -148,7 +159,7 @@ def update_customer
     update_legal = gets.chomp
     updated.update(age: update_legal)
     updated.save
-    puts "HAPPY BIRTHDAY #{current_name.upcase}!!!"
+    puts "HAPPY BIRTHDAY #{current_name.upcase}!!!".colorize(:color => :yellow).bold
   elsif user_choice.downcase == "drink"
     puts "What is #{current_name}'s ordering?"
     update_customer_drink = gets.chomp
@@ -166,13 +177,13 @@ def delete
     delete_customer_name = gets.chomp
     delete_customer_row = Customer.find_by(name: delete_customer_name)
     delete_customer_row.delete
-    puts "Customer deleted"
+    puts "Customer deleted".colorize(:color => :red, :background => :light_white).bold
   elsif delete_input.downcase == "drink"
     puts "What is the name of the drink you would like to delete?"
     delete_drink_name = gets.chomp
     delete_drink_row = Drink.find_by(name: delete_drink_name)
     delete_drink_row.delete
-    puts "Drink deleted"
+    puts "Drink deleted".colorize(:color => :red, :background => :light_white).bold
       puts "Enter 'help' to return to the main menu." 
   end
 end
@@ -208,7 +219,7 @@ while usage == true do
       \n
       \n".colorize(:yellow)
     
-    puts "Goodbye!"
+    puts "See you later!".colorize(:color => :yellow, :background => :light_white).bold
     break
   elsif user_input == "1"
     puts all_drinks()
@@ -227,7 +238,8 @@ while usage == true do
   elsif user_input == "help"
     help(new_bartender)
   else
-    puts "Whoops! Unrecognized command. Type 'help' to see list of commands"
+    puts "Whoops! Unrecognized command.".colorize(:color => :red, :background => :light_white).bold
+    puts "Type 'help' to see list of commands"
   end
 
 end

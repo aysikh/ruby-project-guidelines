@@ -2,7 +2,6 @@ Bartender.destroy_all
 Customer.destroy_all
 Drink.destroy_all
 
-
 ################ BARTENDERS #####################
 # amy = Bartender.find_or_create_by(name: "Amy", years_of_experience: 5)
 
@@ -71,7 +70,7 @@ soda = Drink.find_or_create_by(name: "Soda", price: 2)
 ################# CUSTOMERS ###################
 sue = Customer.find_or_create_by(name: "Sue", drink: reisling.name, age: 30)
 
-matteo = Customer.find_or_create_by(name: "Matteo", drink: moscowmule.name, age: 24)
+jon = Customer.find_or_create_by(name: "Jon", drink: moscowmule.name, age: 24)
 
 shannon = Customer.find_or_create_by(name: "Shannon", drink: orangecrush.name, age: 28)
 
