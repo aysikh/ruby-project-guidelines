@@ -1,5 +1,6 @@
 require_relative '../config/environment'
 require 'colorize'
+require 'audio-playback'
 
 def welcome
 
