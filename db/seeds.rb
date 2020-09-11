@@ -10,7 +10,6 @@ Drink.destroy_all
 
 # steve = Bartender.find_or_create_by(name: "Steve", years_of_experience: 1)
 
-
 ################### WINE ####################
 pinotnoir = Drink.find_or_create_by(name: "Pinot Noir", price: 5)
 
@@ -25,7 +24,7 @@ whiteclaw = Drink.find_or_create_by(name: "White Claw", price: 6)
 
 truly = Drink.find_or_create_by(name: "Truly", price: 6)
 
-################## BEER ##########################
+################## BEER #######################
 bluemoon = Drink.find_or_create_by(name: "Blue Moon", price: 5)
 
 solace = Drink.find_or_create_by(name: "Solace Lucy Juicy", price: 7)
@@ -70,26 +69,12 @@ soda = Drink.find_or_create_by(name: "Soda", price: 2)
 
 
 ################# CUSTOMERS ###################
-sue = Customer.find_or_create_by(name: "Sue", drink: reisling.name, is_over_21: true)
+sue = Customer.find_or_create_by(name: "Sue", drink: reisling.name, age: 30)
 
-matteo = Customer.find_or_create_by(name: "Matteo", drink: moscowmule.name, is_over_21: true)
+matteo = Customer.find_or_create_by(name: "Matteo", drink: moscowmule.name, age: 24)
 
-shannon = Customer.find_or_create_by(name: "Shannon", drink: orangecrush.name, is_over_21: true)
+shannon = Customer.find_or_create_by(name: "Shannon", drink: orangecrush.name, age: 28)
 
-paul = Customer.find_or_create_by(name: "Paul", drink: mojito.name, is_over_21: true)
+paul = Customer.find_or_create_by(name: "Paul", drink: mojito.name, age: 32)
 
-mark = Customer.find_or_create_by(name: "Mark", drink: moscowmule.name, is_over_21: true)
-
-# jon = Customer.find_or_create_by(name: "Jon", drink: whiterussian is_over_21: true
-
-# anney = Customer.find_or_create_by(name: "Anney", drink: whiskeysour, is_over_21: true
-
-# conrad = Customer.find_or_create_by(name: "Anney", drink: cucumbergin, is_over_21: true
-
-# michelle = Customer.find_or_create_by(name: "Michelle", drink: oldfashionis_over_21: true)
-
-# stephanie = Customer.find_or_create_by(name: "Stephanie", drink: water, is_over_21: false
-
-# kevin = Customer.find_or_create_by(name: "Kevin", drink: soda is_over_21: false
-
-# zachary = Customer.find_or_create_by(name: "Zachary", drinks: pinotgrigriois_over_21: true
+mark = Customer.find_or_create_by(name: "Mark", drink: moscowmule.name, age: 25)

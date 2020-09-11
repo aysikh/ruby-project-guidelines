@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 4) do
   create_table "customers", force: :cascade do |t|
     t.string "name"
     t.string "drink"
-    t.boolean "is_over_21"
+    t.integer "age"
   end
 
   create_table "drinks", force: :cascade do |t|

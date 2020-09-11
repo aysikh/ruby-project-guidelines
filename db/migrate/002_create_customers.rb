@@ -4,7 +4,7 @@ class CreateCustomers < ActiveRecord::Migration[4.2]
     create_table :customers do |t|
       t.string :name
       t.string :drink
-      t.boolean :is_over_21
+      t.integer :age
     end
   end
 
